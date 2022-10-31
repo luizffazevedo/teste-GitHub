@@ -18,7 +18,6 @@ class ListaRepo():
 
         else :
             return resposta.status_code
-    
 
     def filtro_repositorio (self):
         '''Essa função filtra todos os repositórios e diz se está ativo ou arquivado .'''
@@ -43,14 +42,15 @@ class ListaRepo():
 
 
     def mostrar_data_repositorio(self):
-        '''Mostra a data de modificação do último commit do repositório . '''
+        '''Mostra a data do último commit do repositório .'''
         dados_api = self.requisicao()
         datas = list()
         data_atual = date.today()
+        dic_tempo = dict()
+
         for i in range(len(dados_api)):
             datas.append(dados_api[i]['pushed_at'][0:10])
         
-        dic_tempo = {}
 
         for d in range(len(datas)):
             ano = int(datas[d][0:4]) 
@@ -96,10 +96,9 @@ class ListaRepo():
 repositorios = ListaRepo('luizffazevedo')
 
 
+repositorios.requisicao()
 repositorios.mostrar_data_repositorio()
-repositorios.filtro_repositorio()
-repositorios.mostrar_data_repositorio()
-repositorios.pesquisa_repositório()
+
 
 
 
